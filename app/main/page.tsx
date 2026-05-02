@@ -9,6 +9,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group"
 import { Button } from "@/components/ui/button"
+import { generateDrafts } from "../actions/generate"
 
 export default function Main() {
   const [url, setUrl] = useState("")
@@ -21,19 +22,17 @@ export default function Main() {
 
   const [copiedStates, setCopiedStates] = useState<{ [key: string]: boolean }>({})
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     if (!url) return
     setIsLoading(true)
     
-    // Simulating a backend call that returns our data
-    setTimeout(() => {
-      setData({
-        summary: "This is a comprehensive summary of the event. The speaker highlighted incredible paradigms in modern tech, emphasizing the need for robust solutions and scalable architectures. Key takeaways included the importance of team synthesis and adopting AI early.",
-        linkedin: "🚀 Just attended an incredible event on Modern Tech Paradigms!\n\nThe discussions were truly eye-opening, especially the session on scalable architectures. It's amazing to see where the industry is heading.\n\nHere are my top 3 takeaways:\n🔹 Embrace AI early\n🔹 Team synthesis is crucial\n🔹 Scalability starts at the architectural level\n\nHighly recommend catching the recording if you missed it!\n\n#TechEvent #Learning #Networking #Innovation",
-        twitter: "Just tuned into an amazing event on Modern Tech Paradigms! 🤯\n\nThe insights on scalable architectures were mind-blowing. \n\nThread below on my key takeaways 🧵👇 (1/4)\n\n#Tech #Event"
-      })
-      setIsLoading(false)
-    }, 2500)
+    const response = await generateDrafts(url);
+    if(response.success && response.data){
+      setData(response.data);
+    } else {
+      alert(response.error || "Something went wrong");
+    }
+    setIsLoading(false);
   }
 
   const handleCopy = (text: string, id: string) => {
