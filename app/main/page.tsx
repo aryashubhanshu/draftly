@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { InfoIcon, Loader2, Copy, Check, Sparkles, FileText } from "lucide-react"
+import { InfoIcon, Loader2, Copy, Check, Sparkles, FileText, PencilLine } from "lucide-react"
 
 import { Field, FieldLabel } from "@/components/ui/field"
 import {
@@ -52,7 +52,7 @@ export default function Main() {
         {/* Header Hero Section */}
         <div className="text-center space-y-6">
           <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-blue-50 text-blue-600 mb-2">
-            <Sparkles className="w-8 h-8" />
+            <PencilLine className="w-8 h-8" />
           </div>
           <h1 className="text-5xl font-black tracking-tight text-neutral-900">
             Generate Event Drafts
@@ -77,7 +77,7 @@ export default function Main() {
                     placeholder="https://example.com/event" 
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    className="h-14 text-lg px-4 bg-white/50 focus:bg-white"
+                    className="h-14 text-lg px-4"
                   />
                   <InputGroupAddon align="inline-end">
                     <InfoIcon className="w-5 h-5 text-neutral-400" />
