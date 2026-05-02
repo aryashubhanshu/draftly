@@ -1,12 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { InfoIcon, Loader2, Copy, Check, Sparkles, FileText, PencilLine } from "lucide-react"
+import { Loader2, Copy, Check, Sparkles, FileText, PencilLine } from "lucide-react"
 
 import { Field, FieldLabel } from "@/components/ui/field"
 import {
   InputGroup,
-  InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group"
 import { Button } from "@/components/ui/button"
@@ -64,7 +63,6 @@ export default function Main() {
 
         {/* Input Card */}
         <div className="bg-white/60 backdrop-blur-xl p-8 sm:p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/80 relative overflow-hidden transition-all">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 pointer-events-none" />
           <div className="relative flex flex-col sm:flex-row items-end gap-5">
             <div className="flex-1 w-full">
               <Field>
@@ -79,9 +77,6 @@ export default function Main() {
                     onChange={(e) => setUrl(e.target.value)}
                     className="h-14 text-lg px-4"
                   />
-                  <InputGroupAddon align="inline-end">
-                    <InfoIcon className="w-5 h-5 text-neutral-400" />
-                  </InputGroupAddon>
                 </InputGroup>
               </Field>
             </div>
@@ -91,7 +86,7 @@ export default function Main() {
               disabled={!url || isLoading}
             >
               {isLoading && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
-              {isLoading ? "Analyzing Event..." : "Generate Magic"}
+              {isLoading ? "Analyzing Event..." : "Generate Drafts"}
             </Button>
           </div>
         </div>
